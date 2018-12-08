@@ -120,23 +120,21 @@ citado acima, no lugar de "pessoas".
 */
 carro.adicionarPessoas = function(maisPessoas){
 	var totalPessoas = carro.quantidadePessoas + maisPessoas;
+	var quantosCabem = carro.assentos - carro.quantidadePessoas;
+	var PlurOuSingP = quantosCabem === 1 ? 'pessoa' : 'pessoas';
+	var PlurOuSingC = quantosCabem === 1 ? 'cabe' : 'cabem';
 
-	 /*Importante criar uma variável para substituir a quantidade de pessoas e não incrementar no início, pois o javascript somará a quantidade, mesmo após mensagem de que já está lotado. Ou seja, mesmo após a negativa da função, a propriedade quantidade.Pessoas teria seu valor alterado.*/
 
 	if(carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos ) {
 		return 'O carro já está lotado!';
 	} 
 
-	/* a verificação se o total de pessoas é maior ou igual a quantidade de pessoas, permite o uso de números negativos na propriedade maisPessoas, possibilitando também a exclusão*/
 
 	if (totalPessoas > carro.assentos) {
-		var quantosCabem = carro.assentos - carro.quantidadePessoas;
-		var PlurOuSingP = quantosCabem === 1 ? 'pessoa' : 'pessoas';
-		var PlurOuSingC = quantosCabem === 1 ? 'cabe' : 'cabem';
 		return 'Só ' + PlurOuSingC + ' mais ' + quantosCabem + ' ' + PlurOuSingP + ' no carro!'; 
 	}
 
-	carro.quantidadePessoas += maisPessoas; //Importante incrementar só após a verificação da função. 
+	carro.quantidadePessoas += maisPessoas; 
 	return 'Já temos ' + carro.quantidadePessoas + ' pessoas no carro!';
 } 
 
