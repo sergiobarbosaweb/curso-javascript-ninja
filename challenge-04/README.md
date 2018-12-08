@@ -49,35 +49,58 @@ seguintes propriedades (os valores devem ser do tipo mostrado abaixo):
 - `assentos` - Number - cinco por padrão
 - `quantidadePessoas` - Number - zero por padrão
 */
-?
+var carro = {
+
+	marca: 'Chevrolet',
+	modelo:'Cruze',
+	placa: 'ABC1010',
+	ano: '2018',
+	cor: 'preto',
+	quantasPortas: 4,
+	assentos: '5',
+	quantidadePessoas: 0,
+
+};
 
 /*
 Crie um método chamado `mudarCor` que mude a cor do carro conforme a cor
 passado por parâmetro.
 */
-?
+carro.mudarCor = function(cor){
+
+	carro.cor = cor;
+};
 
 /*
 Crie um método chamado `obterCor`, que retorne a cor do carro.
 */
-?
+carro.obterCor = function(){
+	return carro.cor;
+}
 
 /*
 Crie um método chamado `obterModelo` que retorne o modelo do carro.
 */
-?
+carro.obterModelo = function(){
+	return carro.modelo;
+};
 
 /*
 Crie um método chamado `obterMarca` que retorne a marca do carro.
 */
-?
+carro.obterMarca = function(){
+
+	return carro.marca;
+};
 
 /*
 Crie um método chamado `obterMarcaModelo`, que retorne:
 "Esse carro é um [MARCA] [MODELO]"
 Para retornar os valores de marca e modelo, utilize os métodos criados.
 */
-?
+carro.obterMarcaModelo = function(){
+	return 'Esse carro é um ' + carro.obterMarca() + ' ' + carro.obterModelo();
+}
 
 /*
 Crie um método que irá adicionar pessoas no carro. Esse método terá as
@@ -95,7 +118,27 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 - Se couber somente mais uma pessoa, mostrar a palavra "pessoa" no retorno
 citado acima, no lugar de "pessoas".
 */
-?
+carro.adicionarPessoas = function(maisPessoas){
+	var totalPessoas = carro.quantidadePessoas + maisPessoas;
+
+	 /*Importante criar uma variável para substituir a quantidade de pessoas e não incrementar no início, pois o javascript somará a quantidade, mesmo após mensagem de que já está lotado. Ou seja, mesmo após a negativa da função, a propriedade quantidade.Pessoas teria seu valor alterado.*/
+
+	if(carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos ) {
+		return 'O carro já está lotado!';
+	} 
+
+	/* a verificação se o total de pessoas é maior ou igual a quantidade de pessoas, permite o uso de números negativos na propriedade maisPessoas, possibilitando também a exclusão*/
+
+	if (totalPessoas > carro.assentos) {
+		var quantosCabem = carro.assentos - carro.quantidadePessoas;
+		var PlurOuSingP = quantosCabem === 1 ? 'pessoa' : 'pessoas';
+		var PlurOuSingC = quantosCabem === 1 ? 'cabe' : 'cabem';
+		return 'Só ' + PlurOuSingC + ' mais ' + quantosCabem + ' ' + PlurOuSingP + ' no carro!'; 
+	}
+
+	carro.quantidadePessoas += maisPessoas; //Importante incrementar só após a verificação da função. 
+	return 'Já temos ' + carro.quantidadePessoas + ' pessoas no carro!';
+} 
 
 /*
 Agora vamos verificar algumas informações do carro. Para as respostas abaixo,
@@ -105,38 +148,38 @@ retornar algum valor.
 
 Qual a cor atual do carro?
 */
-?
+carro.obterCor(); //'Preto'
 
 // Mude a cor do carro para vermelho.
-?
+carro.mudarCor('vermelho');
 
 // E agora, qual a cor do carro?
-?
+carro.obterCor(); //'vermelho'
 
 // Mude a cor do carro para verde musgo.
-?
+carro.mudarCor('verde musgo');
 
 // E agora, qual a cor do carro?
-?
+carro.obterCor(); //'verde musgo'
 
 // Qual a marca e modelo do carro?
-?
+carro.obterMarcaModelo(); //'Esse carro é um Chevrolet Cruze'
 
 // Adicione 2 pessoas no carro.
-?
+carro.adicionarPessoas(2); //"Já temos 2 pessoas no carro!"
 
 // Adicione mais 4 pessoas no carro.
-?
+carro.adicionarPessoas(4); //"Só cabem mais 3 pessoas no carro!"
 
 // Faça o carro encher.
-?
+carro.adicionarPessoas(3); //"Já temos 5 pessoas no carro!"
 
 // Tire 4 pessoas do carro.
-?
+carro.adicionarPessoas(-4); //"Já temos 1 pessoas no carro!"
 
 // Adicione 10 pessoas no carro.
-?
+carro.adicionarPessoas(10); // "Só cabem mais 4 pessoas no carro!"
 
 // Quantas pessoas temos no carro?
-?
+carro.quantidadePessoas // 1
 ```
