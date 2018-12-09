@@ -57,7 +57,7 @@ var carro = {
 	ano: '2018',
 	cor: 'preto',
 	quantasPortas: 4,
-	assentos: '5',
+	assentos: 5,
 	quantidadePessoas: 0,
 
 };
