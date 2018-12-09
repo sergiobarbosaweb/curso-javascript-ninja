@@ -7,12 +7,14 @@ var myArray = [10, 'Sérgio', null, {a: 2}, function(){} ];
 /*
 Crie uma função que receba um array como parâmetro, e retorne esse array.
 */
-// ?
+function myFunction(arr){
+	return arr;
+}
 
 /*
 Imprima o segundo índice do array retornado pela função criada acima.
 */
-// ?
+console.log(myFunction(myArray)[1]); //Retornará Sérgio
 
 /*
 Crie uma função que receba dois parâmetros: o primeiro, um array de valores; e o
