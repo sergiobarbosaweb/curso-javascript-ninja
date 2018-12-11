@@ -80,7 +80,7 @@ function calculator ( operator ){
 			if( typeof x !== 'number' && typeof y !== 'number'){
 				return false;
 			}
-			return operation[ operator ]( x, y )
+			return operation[ operator ]( x, y );
 	};
 }
 
@@ -157,12 +157,78 @@ Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
 divisão e resto. Crie variáveis com os nomes "subtraction",
 "multiplication", "division" e "mod".
 */
-// ?
+operationSignal = '-';
+var subtraction = calculator( operationSignal );
+if (subtraction ){
+
+	number1 = 10;
+	number2 = 12;
+	console.log( showOperationMessage(operationSignal, number1, number2), subtraction(number1, number2) );
+
+}
+
+else{
+	console.log(showErrorMessage( operationSignal ) );
+}
+
+operationSignal = '*';
+var multiplication = calculator( operationSignal );
+if ( multiplication ){
+
+	number1 = 10;
+	number2 = 12;
+	console.log( showOperationMessage(operationSignal, number1, number2), multiplication(number1, number2) );
+
+}
+
+else{
+	console.log(showErrorMessage( operationSignal ) );
+}
+
+operationSignal = '/';
+var division = calculator( operationSignal );
+if ( division ){
+
+	number1 = 10;
+	number2 = 12;
+	console.log( showOperationMessage(operationSignal, number1, number2), division(number1, number2) );
+
+}
+
+else{
+	console.log(showErrorMessage( operationSignal ) );
+}
+
+operationSignal = '%';
+var mod = calculator( operationSignal );
+if ( mod ){
+
+	number1 = 12;
+	number2 = 10;
+	console.log( showOperationMessage(operationSignal, number1, number2), mod(number1, number2) );
+
+}
+
+else{
+	console.log(showErrorMessage( operationSignal ) );
+}
 
 /*
 Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
 a mensagem de erro será mostrada no console.
 */
-// ?
+operationSignal = '&';
+var invalidOperator = calculator( operationSignal );
+if ( invalidOperator ){
+
+	number1 = 12;
+	number2 = 10;
+	console.log( showOperationMessage(operationSignal, number1, number2), invalidOperator(number1, number2) );
+
+}
+
+else{
+	console.log(showErrorMessage( operationSignal ) );
+}
 
 })();
