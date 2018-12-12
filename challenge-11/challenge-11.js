@@ -92,9 +92,9 @@ criado acima, só precisa ser reiniciado) números de 0 a 20, inclusive
 esses. Se o número for ímpar, pular para o próximo número.
 Mostrar no console os números do array.
 */
-var numbers = [];
 console.log( 'Pares de 0 a 20:' );
-for ( var i = 0; i< 20; i++ ){
+numbers = [];
+for ( var i = 0; i <= 20; i++ ){
 	if(i % 2 !== 0) {
 		continue;
 	}
