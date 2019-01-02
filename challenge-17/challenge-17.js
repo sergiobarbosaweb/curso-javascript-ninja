@@ -1,3 +1,5 @@
+(function(){
+
 /*
 1. Envolva todo o conteúdo desse desafio em uma IIFE.
 2. Adicione a diretiva 'use strict';
@@ -10,7 +12,8 @@ regulares! Para isso, iremos usar o texto abaixo. Coloque-o em uma
 variável chamada `text`:
 "Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro."
 */
-// ?
+var text = 'Manuel Marques de Sousa, Conde de Porto Alegre(Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro.';
+
 
 /*
 Vamos começar com umas brincadeiras fáceis :D
@@ -18,7 +21,7 @@ Troque o nome "Manuel Marques de Sousa" pelo seu nome, e mostre o resultado
 no console:
 */
 console.log( 'Adicionando seu nome no texto:' );
-// ?
+console.log(text.replace (/Manuel Marques de Sousa/, 'Sérgio Barbosa') );
 
 /*
 Agora, substitua a palavra "brasileiro" por sua cidade natal e mostre no
@@ -26,14 +29,17 @@ console.
 Ex: Se você for da São Paulo, substitua por "paulista".
 */
 console.log( '\nTrocando naturalidade:' );
-// ?
+console.log( text.replace ( /brasileiro/g, 'Pernambucano' ) );
 
 /*
 Substitua todos os números por um traço `-`. Cada caractere de número deve
 ser um traço. Mostre o resultado no console:
 */
 console.log( '\nTrocando números por -:' );
-// ?
+console.log( text.replace ( /\d/g, '-' ) );
+// ou .... console.log( text.replace ( /[0-9]/g, '-' ) );
+//ou .... console.log( text.replace ( /0|1|2|3|4|5|6|7|8|9/g, '-' ) );
+//ou .... console.log( text.replace ( /[0123456789]/g, '-' ) );
 
 /*
 Substitua todas as letras (somente letras) de "D" maiúsculo até "h"
@@ -91,3 +97,6 @@ console o resultado.
 */
 console.log( '\nReplace de datas:' );
 // ?
+
+
+})();
