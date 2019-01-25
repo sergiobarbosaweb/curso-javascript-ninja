@@ -52,7 +52,7 @@ function handleClickNumber() {
 }
 
 function handleClickOperation(){
-	removeLastItemIfItIsAnOperator();
+	$visor.value = removeLastItemIfItIsAnOperator($visor.value);
 	$visor.value += this.value;
 }
 
@@ -60,23 +60,47 @@ function handleClickCE() {
 	$visor.value = 0;
 }
 
-function isLastItemAnOperation() {
+function isLastItemAnOperation(number) {
 	var operations = ['+', '-', 'x', '÷'];
-	var lastItem = $visor.value.split('').pop(); //o método remove o último item do array e retorna o mesmo.
-	return operations.some(function(operator){ //some verifica se algum item combina com o retorno. Every verifica todos
+	var lastItem = number.split('').pop(); //o método pop() remove o último item do array e retorna o mesmo.
+	return operations.some(function(operator){ // o método some() verifica se algum item combina com o retorno. Every verifica todos
 		return operator === lastItem;
 	}); 
 }
 
+function removeLastItemIfItIsAnOperator(number){
+	if (isLastItemAnOperation(number)) {
+		return number.slice(0, -1);
+	}
+	return number;
+}
+
 function handClickEqual() {
-	removeLastItemIfItIsAnOperator();
+	 $visor.value = removeLastItemIfItIsAnOperator($visor.value);
+	var allValues = $visor.value.match(/\d+[+x÷-]?/g);
+	$visor.value = allValues.reduce(function(accumulated, actual) {
+		var firstValue = accumulated.slice(0 , -1);
+		var operator = accumulated.split('').pop();
+		var lastValue = removeLastItemIfItIsAnOperator(actual);
+		var lastOperator = isLastItemAnOperation(actual) ? actual.split('').pop() : '';
+		switch(operator){
+			case '+':
+			   return ( Number(firstValue) + Number(lastValue) ) + lastOperator;
+			case '-':
+			   return ( Number(firstValue) - Number(lastValue) ) + lastOperator;
+			case 'x':
+			   return ( Number(firstValue) * Number(lastValue) ) + lastOperator;  
+			case '÷':
+			   return ( Number(firstValue) / Number(lastValue) ) + lastOperator;     
+		}
+
+	});
+
+
 }
 
-function removeLastItemIfItIsAnOperator(){
-	if (isLastItemAnOperation())
-		$visor.value = $visor.value.slice(0, -1); 
-}
 
+	
 	
 
 
