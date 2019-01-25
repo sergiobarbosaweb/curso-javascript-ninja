@@ -1,3 +1,6 @@
+(function(win, doc){
+	'use strict';
+
 /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
@@ -23,3 +26,58 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+var $visor = doc.querySelector('[data-js="visor"]');
+var $buttonsNumbers = doc.querySelectorAll('[data-js="button-number"]');
+var $buttonsOperations = doc.querySelectorAll('[data-js="button-operation"]');
+var $buttonCE = doc.querySelector('[data-js="button-CE"]');
+var $buttonEqual = doc.querySelector('[data-js="button-equal"]');
+
+
+Array.prototype.forEach.call($buttonsNumbers, function(button){
+	button.addEventListener('click', handleClickNumber, false);
+});
+
+Array.prototype.forEach.call($buttonsOperations, function(button){
+	button.addEventListener('click', handleClickOperation, false);
+});
+
+$buttonCE.addEventListener('click', handleClickCE, false);
+$buttonEqual.addEventListener('click', handClickEqual, false);
+
+
+
+function handleClickNumber() {
+	$visor.value += this.value;
+}
+
+function handleClickOperation(){
+	removeLastItemIfItIsAnOperator();
+	$visor.value += this.value;
+}
+
+function handleClickCE() {
+	$visor.value = 0;
+}
+
+function isLastItemAnOperation() {
+	var operations = ['+', '-', 'x', '÷'];
+	var lastItem = $visor.value.split('').pop(); //o método remove o último item do array e retorna o mesmo.
+	return operations.some(function(operator){ //some verifica se algum item combina com o retorno. Every verifica todos
+		return operator === lastItem;
+	}); 
+}
+
+function handClickEqual() {
+	removeLastItemIfItIsAnOperator();
+}
+
+function removeLastItemIfItIsAnOperator(){
+	if (isLastItemAnOperation())
+		$visor.value = $visor.value.slice(0, -1); 
+}
+
+	
+
+
+})(window, document);
