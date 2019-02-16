@@ -57,7 +57,7 @@ function handleClickOperation(){
 }
 
 function handleClickCE() {
-	$visor.value = 0;
+	$visor.value = '';
 }
 
 function isLastItemAnOperation(number) {
